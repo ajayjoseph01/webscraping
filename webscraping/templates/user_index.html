@@ -7,10 +7,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>INFOX CORE</title>
-  <!-- modal:css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
-  <!-- searchbar link-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
@@ -27,11 +23,11 @@
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
-  <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script>
+  <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script> 
   <script src="{% static 'assets/vendors/chart.js/Chart.min.js'%}"></script>
   <script src="{% static 'assets/vendors/chart.js/Chart.min.js'%}"></script>
+
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 </head>
 <style>
   @media (max-width:992px) {
@@ -45,16 +41,15 @@
 </style>
 
 <body>
-  {% for t in mem %}
   <div class="container-scroller">
 
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo text-light text-decoration-none" href="admin_index.html">
+        <a class="sidebar-brand brand-logo text-light text-decoration-none">
           <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">iNFOX</p>
         </a>
-        <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="admin_index.html">
+        <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" >
           <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">i</p>
         </a>
       </div>
@@ -62,19 +57,25 @@
         <li class="nav-item profile">
           <div class="profile-desc">
             <div class="profile-pic">
-              <!-- <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{{.image.url}}" alt="">
+              <div class="count-indicator">
+                {% for i in use %}         
+                <img class="img-xs rounded-circle " src="{{i.photo.url}}" alt="">
+                
                 <span class="count bg-success"></span>
-              </div> -->
+              </div>
               <div class="profile-name">
-                <h5 class="mb-0 font-weight-normal">{{t.username}}</h5>
-                <span>{{t.designation.designation}}</span>
+                
+                               
+                <h5 class="mb-0 font-weight-normal">{{i.fullname}}</h5>
+                
+                <span>user</span>
+                
               </div>
             </div>
-            <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"></a>
-            <!-- <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-              aria-labelledby="profile-dropdown"> -->
-              <!-- <a href="#" class="dropdown-item preview-item">
+            <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+            <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+              aria-labelledby="profile-dropdown">
+              <a href="{% url 'account_user' %}" class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-dark rounded-circle">
                     <i class="mdi mdi-settings text-primary"></i>
@@ -85,7 +86,7 @@
                 </div>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item preview-item">
+              <a href="{% url 'changepassword_user' %}" class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-dark rounded-circle">
                     <i class="mdi mdi-onepassword  text-info"></i>
@@ -94,32 +95,84 @@
                 <div class="preview-item-content">
                   <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
                 </div>
-              </a> -->
+              </a>
 
               </a>
-            <!-- </div> -->
+            </div>
           </div>
-        </li>
         <li class="nav-item nav-category">
           <span class="nav-link">Navigation</span>
         </li>
+
         <li class="nav-item menu-items">
-          <a class="nav-link" href='/admin_dashboard/'>
+          <a class="nav-link" href="{% url 'user_dashboard' %}">
             <span class="menu-icon">
-              <i class="mdi mdi-apps"></i>
+              <i class="mdi mdi-speedometer"></i>
             </span>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href='/HR/'>
+        <!-- <li class="nav-item menu-items">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
-              <i class="mdi mdi-account-key"></i>
+              <i class="mdi mdi-laptop"></i>
             </span>
-            <span class="menu-title">Users</span>
+            <span class="menu-title">Topics</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/buttons.html' %}">Buttons</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/dropdowns.html' %}">Dropdowns</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/typography.html' %}">Typography</a>
+              </li>
+            </ul>
+          </div>
+        </li> -->
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="#">
+            <span class="menu-icon">
+              <i class="mdi mdi-playlist-play"></i>
+            </span>
+            <span class="menu-title">Jobs</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{% url 'news' %}">
+            <span class="menu-icon">
+              <i class="mdi mdi-table-large"></i>
+            </span>
+            <span class="menu-title">News</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{% url 'weather' %}">
+            <span class="menu-icon">
+              <i class="mdi mdi-chart-bar"></i>
+            </span>
+            <span class="menu-title">Weathers</span>
           </a>
         </li>
         
+        
+        <!-- <li class="nav-item menu-items">
+          <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <span class="menu-icon">
+              <i class="mdi mdi-security"></i>
+            </span>
+            <span class="menu-title">Payment</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{pages/samples/blank-page.html' %}"> Blank Page </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/samples/error-404.html' %}"> 404 </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/samples/error-500.html' %}"> 500 </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/samples/login.html' %}"> Login </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{pages/samples/register.html' %}"> Register </a></li>
+            </ul>
+          </div>
+        </li> -->
         
       </ul>
     </nav>
@@ -128,7 +181,7 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="admin_index.html">
+          <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="index.html">
             <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">iNFOX</p>
           </a>
         </div>
@@ -141,32 +194,37 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                 <div class="navbar-profile">
+                     
+                <img class="img-xs rounded-circle" src="{{i.photo.url}}" alt="">
                   
-                  &nbsp;{{t.username}}<i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                 
+   
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name">{{i.fullname}}</p>
+                                      
+                 
+                  <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
-              <div id="log" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+              <div id="log" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                aria-labelledby="profileDropdown">
                 <h6 class="p-3 mb-0">Profile</h6>
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-divider"></div>
-
-                <a class="dropdown-item preview-item" href="/logout/">
-
-                    <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-
-                            <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                <a href="{% url 'user_logout' %}" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-logout text-danger"></i>
                     </div>
-                    <div class="preview-item-content">
-                        <p class="preview-subject mb-1">Log out</p>
-                    </div>
-                </a>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject mb-1">Log out</p>
+                  </div>
                 </a>
                 <div class="dropdown-divider"></div>
-            </div>
+              </div>
             </li>
           </ul>
+          
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>
@@ -186,15 +244,17 @@
         </div>
         <!-- page-body-wrapper ends -->
       </div>
-      <!-- modal js -->
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- endmodal -->
+      
       <!-- container-scroller -->
-      {% endfor %}
       <!-- plugins:js -->
-      <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+      {% endfor %}
+      <!-- bootsrtap for popup -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+     <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script> 
       <!-- endinject -->
       <!-- Plugin js for this page -->
       <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
@@ -213,13 +273,39 @@
       <!-- endinject -->
       <!-- Custom js for this page -->
       <script src="{% static 'assets/js/dashboard.js' %}"></script>
-      <script src="{% static 'assets/js/dashboard2.js' %}"></script>
       <!-- End custom js for this page -->
-      <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script>
+       <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script> 
       <!-- endinject -->
 
       <!-- inject:js -->
       <script src="{% static 'assets/js/chart.js'%}"></script>
+      {% if msg_success %}
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        text: '{{ msg_success }}',
+        showConfirmButton: false,
+        timer: 1500
+    }).then(function () {
+        javascript: history.go(1);
+    })
+</script>
+{% endif %}
+{% if msg_warning %}
+<script>
+    Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        text: '{{ msg_warning }}',
+        showConfirmButton: false,
+        timer: 1500
+    }).then(function () {
+        javascript: history.go(-2);
+    })
+</script>
+{% endif %}
+
 </body>
 
 </html>

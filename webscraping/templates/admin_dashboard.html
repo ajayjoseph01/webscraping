@@ -11,7 +11,7 @@
                         <h4 class="card-title">PROFILE </h4>
                     </div>
                     <div class="col-4 col-sm-4 col-md-2 col-lg-2">
-                        <img src="{% static 'assets/images/faces/face.jpg' %}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
+                        <img src="{{vars.image.url}}" class="img-fluid rounded-circle mb-3 " alt="image" style="margin-right:20px;border-radius: 50%">
                     </div>
                 </div>
                 <div class="row">
@@ -19,7 +19,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Ajay Joseph</p>
+                                <p class="text-muted mt-2">{{vars.fullname}}</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Admin</p>
+                                <p class="text-muted mt-2">{{vars.designation.designation}}</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">admin@gmail.com</p>
+                                <p class="text-muted mt-2">{{vars.email}}</p>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="form-group row">
                             <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Contact No</label>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">9961934567</p>
+                                <p class="text-muted mt-2">{{vars.contact_no}}</p>
                             </div>
                         </div>
                     </div>
@@ -58,6 +58,7 @@
         </div>
     </div>
 </div>
+
 
 
 

@@ -1,0 +1,61 @@
+{%extends 'user_index.html'%}
+{%load static%}
+{%block content%}
+
+
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            
+        }
+
+        #main {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type='text'] {
+            width: 30%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        input[type='submit'] {
+            width: 30%;
+       
+            padding: 5px;
+            background: black;
+            color: white;
+            text-transform: uppercase;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <h1>Find the Weather</h1>
+    <form method="GET">
+        <div>
+            <label for="city"></label>
+            <input type="text" id="city" value="{{ request.GET.city }}" placeholder="City..." name="city"/>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-social-icon-text btn-outline-primary"><i class="mdi mdi-tooltip-edit"></i>Submit</button>
+    </form>
+    <br>
+    {% if result %}
+        <h3>{{ result.region }}</h3>
+        <h3>{{ result.dayhour }}</h3>
+        <h3>{{ result.temp_now }}</h3>
+        <h3>{{ result.weather_now }}</h3>
+    {% endif %}
+</div>
+{% endblock %}

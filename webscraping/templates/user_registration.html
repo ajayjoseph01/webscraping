@@ -76,7 +76,7 @@
              
               <h3 class="card-title text-left mb-3">Register</h3>
               <form method="post" action="" name="form1" autocomplete="off" enctype="multipart/form-data">
-                {%csrf_token %}
+                {% csrf_token %}
 
                 <div class="form-group">
                   <label>Fullname</label>
@@ -99,6 +99,10 @@
                   <div class="form-group">
                     <label>Passout year</label>
                     <input type="number" name="passoutyr" class="form-control p_input text-light" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Photo</label>
+                    <input type="file" name="photo" class="form-control p_input text-light" required>
                   </div>
                 <div class="text-center ">
                     <button type="submit" onclick="ValidateEmail(document.form1.email)" class="btn btn-primary btn-block enter-btn mt-3"
