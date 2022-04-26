@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'webscraping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webscrap',
+        'NAME': 'webscraping',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

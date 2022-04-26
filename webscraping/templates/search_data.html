@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-6 justify-content-center">
                     
-                    
+                  {% if datas %}  
                     {% for n in datas %}
                     <h5> -  {{n}} </h5>
                     <hr>
@@ -19,7 +19,12 @@
                  
                     {% endfor %}
                     <br>
-            </div>
+                  {% else %}
+                  <center>
+                  <h5>Nothings to display.....  </h5>   
+                  </center>
+                  {% endif %}    
+             </div>
             
         </div>
  

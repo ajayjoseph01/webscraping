@@ -10,9 +10,12 @@ class candidates (models.Model):
     password  = models.CharField(max_length=100)
     username  = models.CharField(max_length=100)
     contact_no = models.CharField(max_length=100) 
-    qualifications = models.CharField(null=True,blank=True,max_length=100)
-    passout_year = models.IntegerField(null=True,blank=True,default='')
+    date_of_birth = models.DateField(auto_now_add=True, auto_now=False,  null=True, blank=True)
+    gender = models.CharField(max_length=240, null=True)
+    state = models.CharField(max_length=240, null=True)
+    country = models.CharField(max_length=240, null=True)
     photo = models.FileField(upload_to='images/', null=True, blank=True)
+    reg_date = models.DateField(auto_now_add=True, auto_now=False,  null=True, blank=True)
     
 class login(models.Model):
     designation = models.ForeignKey(designation, on_delete=models.DO_NOTHING, related_name='desgn',null=True,blank=True, default='')
@@ -22,10 +25,3 @@ class login(models.Model):
     password = models.CharField(max_length=100)
     image = models.FileField(upload_to= 'images/')
 
-class Headline(models.Model):
-  title = models.CharField(max_length=200)
-  image = models.FileField(upload_to= 'images/')
-  url = models.TextField()
-
-  def __str__(self):
-    return self.title

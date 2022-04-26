@@ -15,18 +15,18 @@
             class="p-2 rounded-circle" width="130" height="130" id="">
           <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-2 px-4 px-md-3 px-xl-4 rounded mt-3">
             <div class="text-md-center text-xl-left">
-              <h6 class="">Joining date</h6>
+              <h6 class="">Registration date</h6>
             </div>
             <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-              <h6 class="font-weight-bold mb-0" style="color: #6C7293;">4/4/2002</h6>
+              <h6 class="font-weight-bold mb-0" style="color: #6C7293;">{{i.reg_date|date:"d-m-Y"}}</h6>
             </div>
           </div>
           <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
             <div class="text-md-center text-xl-left">
-              <h6 class="">Designation</h6>
+              <h6 class="">Country</h6>
             </div>
             <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-              <h6 class="font-weight-bold mb-0" style="color: #6C7293;">user</h6>
+              <h6 class="font-weight-bold mb-0" style="color: #6C7293;">{{i.country}}</h6>
             </div>
           </div>
           
