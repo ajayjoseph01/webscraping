@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate,login
@@ -11,6 +12,7 @@ import json
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+import random
 
 def Register(request):
     if request.method == 'POST':
@@ -295,7 +297,7 @@ def weather(request):
             '\n')
       return render(request, 'weather.html', {'result': result,'use':use,})
 
-
+########
 
 from urllib.request import urlopen
 
@@ -329,3 +331,37 @@ def user_search(request):
       
       use = candidates.objects.filter(id=username1)
     return render(request,'google.html',{'use':use})
+  
+def scrap(request):
+  if 'username1' in request.session:
+      if request.session.has_key('username'):
+        username = request.session['username']
+      if request.session.has_key('username1'):
+        username1 = request.session['username1']
+      else:
+        username1 = "dummy"
+      
+      use = candidates.objects.filter(id=username1)
+      scrapdata=request.POST['scrap_data']
+      text = scrapdata
+      url = 'https://google.com/search?q=' + text
+      A = ("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+       "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36",
+       )
+ 
+      Agent = A[random.randrange(len(A))]
+ 
+      headers = {'user-agent': Agent}
+      r = requests.get(url, headers=headers)
+ 
+      soup = BeautifulSoup(r.text, 'lxml')
+      googles=soup.find_all('h3')
+      datas=[]
+
+      for th in googles:
+         datas.append(th.text)
+     # for info in soup.find_all('h3'):
+     #    print(info.text)
+     #    print('#######') 
+      return render(request,'search_data.html',{'datas':datas,'use':use,'text':text})

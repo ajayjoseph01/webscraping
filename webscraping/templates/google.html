@@ -78,27 +78,38 @@
         font-size:25px;
 
     }
-
+    p{
+       font-family: "Times New Roman", Times, serif;
+   }
 
 </style>
   <center>
  
     <div class="logo ">
-      <img alt="Google" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+      <p style="font-size:90px;font-weight:500;"><span style="color:rgb(35, 3, 241);">S</span><span style="color:rgb(234, 15, 15);">e</span><span style="color:rgb(245, 245, 12) ;">a</span><span style="color:rgb(0,0,255);">r</span><span style="color:rgb(10, 203, 10);">c</span><span style="color:rgb(40, 71, 228);">h</span></p>
     </div>
+    <form method='post' action="/scrap/">
+      {% csrf_token %} 
   
       <div class="container col-sm-7 d-flex justify-content-center" >
         <div class="input-group col-sm-7 input-group-lg" style="height:">
             <div class="input-group-prepend"> <span class="input-group-text google"><img src="https://img.icons8.com/color/48/000000/google-logo.png" style="height:25px;"></span> </div> 
-            <input type="text" class="form-control" placeholder="search...." style="height:45px;">
+            <input type="text" class="form-control query" placeholder="search...." style="height:45px;" name="scrap_data">
             <div class="input-group-append"> <span class="input-group-text microphone"><i class="mdi mdi-search-web mdi-lg" style="height:25px;"></i></span> </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-social-icon-text btn-outline-primary btn-md" style="margin-top:25px;"><i class="mdi mdi-tooltip-edit"></i>Submit</button>
-
+      <button type="submit" class="btn btn-social-icon-text btn-outline-primary btn-md searchbtn" style="margin-top:25px;"><i class="mdi mdi-tooltip-edit"></i>Submit</button>
+    </form>
   
 </center>
-
+{% comment %} <script>
+   let query=document.querySelector('.query')
+   let searchbtn=document.querySelector('.searchbtn')
+   searchbtn.onclick=function(){
+     let url="https://www.google.com/search?q="+query.value;
+     window.open(url)
+   }
+</script> {% endcomment %}
 
 
 {% endblock %}

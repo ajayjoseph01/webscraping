@@ -36,6 +36,7 @@ urlpatterns = [
     path('article/', views.article, name = "article"),
     path('weather/', views.weather, name = "weather"),
     path('user_search/', views.user_search , name='user_search'),
+    path('scrap/', views.scrap , name='scrap'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
