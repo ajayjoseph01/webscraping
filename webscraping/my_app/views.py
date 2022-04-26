@@ -89,6 +89,12 @@ def admin_dashboard(request):
 
     return render(request,'admin_dashboard.html',{'mem':mem})
 
+def users(request):
+    mem = User.objects.all()
+    ctn = candidates.objects.all().count()
+
+    return render(request,'users.html',{'mem':mem,'ctn':ctn})
+
 def user_dashboard(request):
     if 'username1' in request.session:
       if request.session.has_key('username'):

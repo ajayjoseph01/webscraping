@@ -1,0 +1,93 @@
+{% extends 'admin_index.html' %} {% load static %} {% block content %}
+
+<style>
+    .dropdown-item:hover {
+        color: #f4f4f8;
+    }
+    
+    td,
+    th {
+        text-align: center;
+    }
+</style>
+
+
+<div class="row">
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">View Category</h4>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <form>
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control text-white" id="myInput" onkeyup="myFunction()" placeholder="Search . . ." style="border: green" />
+                    </div>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="text-white" style="padding-left:20px;">SNo</th>
+                            <th class="text-white">Category Name</th>
+                            <th class="text-white">Question Count</th>
+                            <th class="text-white">Time</th>
+                            <th class="text-white">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in z %}
+                        <tr>
+
+                            <td>
+                                {{forloop.counter}}
+                            </td>
+                            <td>
+                                {{i.name}}
+                            </td>
+                            <td>
+                                {{i.no_of_question}}
+                            </td>
+                            <td>
+                                {{i.time_taken}} &nbsp; min
+                            </td>
+                            {% if i.name == 'Technical_ability' %}
+                            
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}
