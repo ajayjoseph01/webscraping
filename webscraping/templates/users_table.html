@@ -29,10 +29,10 @@
                     <thead>
                         <tr>
                             <th class="text-white" style="padding-left:20px;">SNo</th>
-                            <th class="text-white">Category Name</th>
-                            <th class="text-white">Question Count</th>
-                            <th class="text-white">Time</th>
-                            <th class="text-white">Action</th>
+                            <th class="text-white">Candidates Name</th>
+                            <th class="text-white">Emailt</th>
+                            <th class="text-white">Phone No</th>
+                            <th class="text-white">Registration Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,17 +43,18 @@
                                 {{forloop.counter}}
                             </td>
                             <td>
-                                {{i.name}}
+                                {{i.fullname}}
                             </td>
                             <td>
-                                {{i.no_of_question}}
+                                {{i.email}}
                             </td>
                             <td>
-                                {{i.time_taken}} &nbsp; min
+                                {{i.contact_no}} &nbsp; min
                             </td>
-                            {% if i.name == 'Technical_ability' %}
+                            <td>
+                                {{i.reg_date}} &nbsp; min
+                            </td>
                             
-                            {% endif %}
                         </tr>
                         {% endfor %}
 

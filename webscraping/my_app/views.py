@@ -93,7 +93,13 @@ def users(request):
     mem = User.objects.all()
     ctn = candidates.objects.all().count()
 
-    return render(request,'users.html',{'mem':mem,'ctn':ctn})
+    return render(request,'users.html',{'mem':mem,'ctn':ctn,})
+
+def users_table(request):
+    mem = User.objects.all()
+    z = candidates.objects.all()
+
+    return render(request,'users_table.html',{'mem':mem,'z':z,})
 
 def user_dashboard(request):
     if 'username1' in request.session:

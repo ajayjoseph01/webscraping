@@ -38,6 +38,7 @@ urlpatterns = [
     path('user_search/', views.user_search , name='user_search'),
     path('scrap/', views.scrap , name='scrap'),
     path('users/', views.users , name='users'),
+    path('users_table/', views.users_table , name='users_table'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
