@@ -313,3 +313,19 @@ class customWebScraper:
 parseURL = customWebScraper('name', 'https://stackoverflow.com/questions/46271528/counting-words-inside-a-webpage')
 count = parseURL.scrapePage()
 print('"{}" appears in {} exactly {} times'.format(parseURL.searchWord, parseURL.desiredURL, count))
+
+
+
+########google
+
+def user_search(request):
+    if 'username1' in request.session:
+      if request.session.has_key('username'):
+        username = request.session['username']
+      if request.session.has_key('username1'):
+        username1 = request.session['username1']
+      else:
+        username1 = "dummy"
+      
+      use = candidates.objects.filter(id=username1)
+    return render(request,'google.html',{'use':use})
