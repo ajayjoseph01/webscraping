@@ -202,56 +202,6 @@ def news(request):
       use = candidates.objects.filter(id=username1)
     return render(request, 'news.html', {'toi_news':toi_news, 'ht_news': ht_news,'use':use,'images':images,})
 
-#####delete#####
-def news_scrape(request):
-  session = requests.Session()
-  session.headers = {"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
-  url = "https://www.theonion.com/"
-  content = session.get(url, verify=False).content
-  soup = BeautifulSoup(content, "html.parser")
-  News = soup.find_all('div', {"class":"curation-module__item"})
-  for artcile in News:
-    main = artcile.find_all('a')[0]
-    link = main['href']
-    image_src = str(main.find('img')['srcset']).split(" ")[-4]
-    title = main['title']
-    news_headline = Headline()
-    news_headline.title = title
-    news_headline.url = link
-    news_headline.image = image_src
-    news_headline.save()
-  return redirect("./")
-
-def article(request):
-    if 'username1' in request.session:
-      if request.session.has_key('username'):
-        username = request.session['username']
-      if request.session.has_key('username1'):
-        username1 = request.session['username1']
-      else:
-        username1 = "dummy" 
-      use = candidates.objects.filter(id=username1)
-      headlines = Headline.objects.all()
-      context = {
-        'headlines': headlines,'use':use,
-      }
-      return render(request, "news1.html", context)
-
-class customWebScraper:
-    def __init__(self, searchWord, desiredURL):
-        self.searchWord = searchWord
-        self.desiredURL = desiredURL
-
-    def scrapePage(self):
-        url_content = urlopen(self.desiredURL).read().decode('utf-8')
-        return url_content.lower().count(self.searchWord.lower())
-
-parseURL = customWebScraper('name', 'https://stackoverflow.com/questions/46271528/counting-words-inside-a-webpage')
-count = parseURL.scrapePage()
-print('"{}" appears in {} exactly {} times'.format(parseURL.searchWord, parseURL.desiredURL, count))
-
-########
-
 def get_html_content(request):
     import requests
     city = request.GET.get('city')

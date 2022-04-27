@@ -100,12 +100,7 @@
                 </div>
             </div>
             {% for i in use %}
-                <form method="post"
-                      action
-                      imagechange
-                      id
-                      {{ i.id }}
-                      enctype="multipart/form-data">
+                <form method="post" action="/imagechange/?id={{ i.id }}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal" id="myModal{{ i.id }}">
                         <div class="modal-dialog">
