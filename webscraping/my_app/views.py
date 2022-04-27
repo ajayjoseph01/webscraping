@@ -101,6 +101,18 @@ def users_table(request):
 
     return render(request,'users_table.html',{'mem':mem,'z':z,})
 
+
+def users_details(request,id):
+    mem = User.objects.all()
+    z = candidates.objects.filter(id=id)
+
+    return render(request,'users_details.html',{'mem':mem,'z':z,})   
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/") 
+
 def user_dashboard(request):
     if 'username1' in request.session:
       if request.session.has_key('username'):

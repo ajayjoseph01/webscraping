@@ -36,27 +36,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% if z %}
                         {% for i in z %}
-                        <tr>
+                        <tr data-href="{% url 'users_details' i.id  %}">
 
                             <td>
                                 {{forloop.counter}}
                             </td>
                             <td>
+                                <img src="{{i.photo.url}}">&nbsp;&nbsp;&nbsp;
+
                                 {{i.fullname}}
                             </td>
                             <td>
                                 {{i.email}}
                             </td>
                             <td>
-                                {{i.contact_no}} &nbsp; min
+                                {{i.contact_no}} 
                             </td>
                             <td>
-                                {{i.reg_date}} &nbsp; min
+                                {{i.reg_date|date:"d-m-Y"}} 
                             </td>
                             
                         </tr>
-                        {% endfor %}
+                        {% endfor %}{% else %}
+                        <h5>Nothing to display...</h5>
+                        {% endif %}
 
                     </tbody>
                 </table>
@@ -64,9 +69,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('table tr').click(function(){
+            window.location=$(this).data('href');
+            return false;
+        })
+    });
 
-
-
+</script>
 
 
 

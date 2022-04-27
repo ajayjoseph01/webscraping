@@ -39,6 +39,9 @@ urlpatterns = [
     path('scrap/', views.scrap , name='scrap'),
     path('users/', views.users , name='users'),
     path('users_table/', views.users_table , name='users_table'),
+    path('users_details/<int:id>', views.users_details , name='users_details'),
+    path('logout/', views.logout , name='logout'),   
+ 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
