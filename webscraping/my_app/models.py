@@ -18,7 +18,7 @@ class candidates (models.Model):
     reg_date = models.DateField(auto_now_add=True, auto_now=False,  null=True, blank=True)
     
 class login(models.Model):
-    designation = models.ForeignKey(designation, on_delete=models.DO_NOTHING, related_name='desgn',null=True,blank=True, default='')
+    designation = models.ForeignKey(designation, on_delete=models.SET_NULL, related_name='desgn',null=True,blank=True, default='')
     fullname = models.CharField(max_length=200)
     email=models.EmailField(max_length=200,default='')
     contact_no=models.CharField(max_length=200,default='')
