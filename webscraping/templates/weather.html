@@ -2,7 +2,6 @@
 {%load static%}
 {%block content%}
 
-
     <style>
         * {
             margin: 0;
@@ -46,7 +45,7 @@
 <body>
 <div id="main">
     <h1>Find the Weather</h1>
-    <form method="GET">
+    <form method="GET" autocomplete="off">
         <div>
             <label for="city"></label>
             <input type="text" id="city" value="{{ request.GET.city }}" placeholder="City..." name="city" style="border-radius:30px;">

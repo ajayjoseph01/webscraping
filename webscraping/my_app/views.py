@@ -13,6 +13,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 import random
+from urllib.request import urlopen
 
 def Register(request):
     if request.method == 'POST':
@@ -24,7 +25,6 @@ def Register(request):
          country = request.POST['country']
          state = request.POST['state']
          reg_date=datetime.now()
-      
          username = fname
          password = random.randint(10000, 99999)
          photo = request.FILES['photo']
@@ -44,33 +44,26 @@ def Register(request):
             'You have successfully registered with Web Scraping Site.\n' \
             'following is your login credentials\n'\
             'username :'+str(member.username)+'\n' 'password :'+str(member.password)
-            
-            
+              
          recepient = str(email)
          send_mail(subject, message, EMAIL_HOST_USER,
                   [recepient], fail_silently=False)
          msg_success = "Registration completed Check Your Mail"
-         return render(request,'user_registration.html',{'msg_success':msg_success})
-                  
+         return render(request,'user_registration.html',{'msg_success':msg_success})              
     else:
       return render(request, 'user_registration.html')
 
-
-def Login(request):
-    
+def Login(request): 
     if request.method == 'POST':
         if candidates.objects.filter(username=request.POST['username'], password=request.POST['password']).exists():
             mem = candidates.objects.get(
                 password=request.POST['password'], username=request.POST['username'])
             request.session['username'] = mem.username
-            request.session['username1'] = mem.id
-           
+            request.session['username1'] = mem.id      
             username = request.session['username']
             username1 = request.session['username1']
             use = candidates.objects.filter(id=mem.id)
-
-            return render(request, 'user_dashboard.html',{'use':use})
-           
+            return render(request, 'user_dashboard.html',{'use':use})      
         elif request.method == 'POST':
             username = request.POST.get('username', None)
             password = request.POST.get('password', None)
@@ -80,34 +73,27 @@ def Login(request):
                 return redirect('admin_dashboard')
             else:
                   context = {'msg_error': 'Invalid data'}
-                  return render(request, 'user_login.html',context)
-    
+                  return render(request, 'user_login.html',context) 
     return render(request, 'user_login.html')  
 
 def admin_dashboard(request):
     mem = User.objects.all()
-
     return render(request,'admin_dashboard.html',{'mem':mem})
 
 def users(request):
     mem = User.objects.all()
     ctn = candidates.objects.all().count()
-
     return render(request,'users.html',{'mem':mem,'ctn':ctn,})
 
 def users_table(request):
     mem = User.objects.all()
     z = candidates.objects.all()
-
     return render(request,'users_table.html',{'mem':mem,'z':z,})
-
 
 def users_details(request,id):
     mem = User.objects.all()
     z = candidates.objects.filter(id=id)
-
     return render(request,'users_details.html',{'mem':mem,'z':z,})   
-
 
 def logout(request):
     auth.logout(request)
@@ -121,7 +107,6 @@ def user_dashboard(request):
         username1 = request.session['username1']
       else:
         username1 = "dummy"
-      
       use = candidates.objects.filter(id=username1)
     return render(request,'user_dashboard.html',{'use':use})
     
@@ -132,18 +117,13 @@ def user_logout(request):
     else:
         return redirect('/')
 
-
 def changepassword_user(request):
     if 'username1' in request.session:
-
         if request.session.has_key('username1'):
             username1 = request.session['username1']
-
         use = candidates.objects.filter(id=username1)
-
         if request.method == 'POST':
             abc = candidates.objects.get(id=username1)
-
             oldps = request.POST['currentPassword']
             newps = request.POST['newPassword']
             cmps = request.POST.get('confirmPassword')
@@ -153,7 +133,6 @@ def changepassword_user(request):
                     abc.save()
                     msg_success="Password Changed Successfully"
                     return render(request, 'user_dashboard.html', {'use': use,'msg_success':msg_success})
-
             elif oldps == newps:
                 messages.add_message(request, messages.INFO,
                                      'Current and New password same')
@@ -161,26 +140,20 @@ def changepassword_user(request):
                 messages.info(request, 'Incorrect password same')
 
             return render(request, 'changepassword_user.html', {'use': use})
-
         return render(request, 'changepassword_user.html', {'use': use})
-
     else:
         return redirect('/')
 
 def account_user(request):
     if 'username1' in request.session:
-
         if request.session.has_key('username1'):
             username1 = request.session['username1']
-
         use = candidates.objects.filter(id=username1)
-
         return render(request, 'account_user.html', {'use': use})
     else:
         return redirect('/')
 
 def imagechange(request):
-
     if request.method == 'POST':
         id = request.GET.get('id')
         abc = candidates.objects.get(id=id)
@@ -194,9 +167,7 @@ def imagechange(request):
 
 toi_r = requests.get("https://timesofindia.indiatimes.com/briefs")
 toi_soup = BeautifulSoup(toi_r.content, 'html.parser')
-
 toi_headings = toi_soup.find_all('h2')
-
 toi_headings = toi_headings[0:-13] # removing footers
 images = toi_soup.find_all('div', class_="posrel")
   
@@ -205,13 +176,9 @@ images = toi_soup.find_all('div', class_="posrel")
 #     #print(item['src'])
 #     toi_img.append(item['src'])
 
-
 toi_news = []
-
 for th in toi_headings:
     toi_news.append(th.text)
-
-
 
 #News from theonion 
 
@@ -220,7 +187,6 @@ ht_soup = BeautifulSoup(ht_r.content, "html.parser")
 ht_headings = ht_soup.find_all('h4')
 ht_headings = ht_headings[2:]
 ht_news = []
-
 for hth in ht_headings:
     ht_news.append(hth.text)
 
@@ -233,19 +199,14 @@ def news(request):
         username1 = request.session['username1']
       else:
         username1 = "dummy"
-      
       use = candidates.objects.filter(id=username1)
     return render(request, 'news.html', {'toi_news':toi_news, 'ht_news': ht_news,'use':use,'images':images,})
 
-
-
-
-
+#####delete#####
 def news_scrape(request):
   session = requests.Session()
   session.headers = {"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
   url = "https://www.theonion.com/"
-
   content = session.get(url, verify=False).content
   soup = BeautifulSoup(content, "html.parser")
   News = soup.find_all('div', {"class":"curation-module__item"})
@@ -261,9 +222,6 @@ def news_scrape(request):
     news_headline.save()
   return redirect("./")
 
-
-
-
 def article(request):
     if 'username1' in request.session:
       if request.session.has_key('username'):
@@ -271,8 +229,7 @@ def article(request):
       if request.session.has_key('username1'):
         username1 = request.session['username1']
       else:
-        username1 = "dummy"
-      
+        username1 = "dummy" 
       use = candidates.objects.filter(id=username1)
       headlines = Headline.objects.all()
       context = {
@@ -280,8 +237,18 @@ def article(request):
       }
       return render(request, "news1.html", context)
 
+class customWebScraper:
+    def __init__(self, searchWord, desiredURL):
+        self.searchWord = searchWord
+        self.desiredURL = desiredURL
 
+    def scrapePage(self):
+        url_content = urlopen(self.desiredURL).read().decode('utf-8')
+        return url_content.lower().count(self.searchWord.lower())
 
+parseURL = customWebScraper('name', 'https://stackoverflow.com/questions/46271528/counting-words-inside-a-webpage')
+count = parseURL.scrapePage()
+print('"{}" appears in {} exactly {} times'.format(parseURL.searchWord, parseURL.desiredURL, count))
 
 ########
 
@@ -298,7 +265,6 @@ def get_html_content(request):
     html_content = session.get(f'https://www.google.com/search?q=weather+{city}').text
     return html_content
 
-
 def weather(request):
     if 'username1' in request.session:
       if request.session.has_key('username'):
@@ -306,8 +272,7 @@ def weather(request):
       if request.session.has_key('username1'):
         username1 = request.session['username1']
       else:
-        username1 = "dummy"
-      
+        username1 = "dummy" 
       use = candidates.objects.filter(id=username1)
       result = None
       if 'city' in request.GET:
@@ -325,27 +290,6 @@ def weather(request):
             '\n')
       return render(request, 'weather.html', {'result': result,'use':use,})
 
-########
-
-from urllib.request import urlopen
-
-class customWebScraper:
-    def __init__(self, searchWord, desiredURL):
-        self.searchWord = searchWord
-        self.desiredURL = desiredURL
-
-    def scrapePage(self):
-        url_content = urlopen(self.desiredURL).read().decode('utf-8')
-        return url_content.lower().count(self.searchWord.lower())
-
-
-
-parseURL = customWebScraper('name', 'https://stackoverflow.com/questions/46271528/counting-words-inside-a-webpage')
-count = parseURL.scrapePage()
-print('"{}" appears in {} exactly {} times'.format(parseURL.searchWord, parseURL.desiredURL, count))
-
-
-
 ########google
 
 def user_search(request):
@@ -355,8 +299,7 @@ def user_search(request):
       if request.session.has_key('username1'):
         username1 = request.session['username1']
       else:
-        username1 = "dummy"
-      
+        username1 = "dummy" 
       use = candidates.objects.filter(id=username1)
     return render(request,'google.html',{'use':use})
   
@@ -367,8 +310,7 @@ def scrap(request):
       if request.session.has_key('username1'):
         username1 = request.session['username1']
       else:
-        username1 = "dummy"
-      
+        username1 = "dummy" 
       use = candidates.objects.filter(id=username1)
       scrapdata=request.POST['scrap_data']
       text = scrapdata
@@ -377,19 +319,12 @@ def scrap(request):
        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36",
        )
- 
       Agent = A[random.randrange(len(A))]
- 
       headers = {'user-agent': Agent}
       r = requests.get(url, headers=headers)
- 
       soup = BeautifulSoup(r.text, 'lxml')
       googles=soup.find_all('h3')
       datas=[]
-
       for th in googles:
          datas.append(th.text)
-     # for info in soup.find_all('h3'):
-     #    print(info.text)
-     #    print('#######') 
       return render(request,'search_data.html',{'datas':datas,'use':use,'text':text})

@@ -4,16 +4,12 @@
     .dropdown-item:hover {
         color: #f4f4f8;
     }
-    
     td,
     th {
         text-align: center;
     }
 </style>
-
-
 <div class="row">
-
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">View Category</h4>
@@ -39,7 +35,6 @@
                         {% if z %}
                         {% for i in z %}
                         <tr data-href="{% url 'users_details' i.id  %}">
-
                             <td>
                                 {{forloop.counter}}
                             </td>
@@ -56,13 +51,11 @@
                             </td>
                             <td>
                                 {{i.reg_date|date:"d-m-Y"}} 
-                            </td>
-                            
+                            </td>            
                         </tr>
                         {% endfor %}{% else %}
                         <h5>Nothing to display...</h5>
                         {% endif %}
-
                     </tbody>
                 </table>
             </div>
@@ -76,11 +69,7 @@
             return false;
         })
     });
-
 </script>
-
-
-
 <script>
     function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
@@ -101,5 +90,4 @@
         }
     }
 </script>
-
 {% endblock %}

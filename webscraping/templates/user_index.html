@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>INFOX CORE</title>
+  <title>Scrapers</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
@@ -20,13 +20,13 @@
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
+ 
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
   <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script> 
   <script src="{% static 'assets/vendors/chart.js/Chart.min.js'%}"></script>
   <script src="{% static 'assets/vendors/chart.js/Chart.min.js'%}"></script>
-
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
@@ -39,18 +39,16 @@
     }
   }
 </style>
-
 <body>
   <div class="container-scroller">
-
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo text-light text-decoration-none">
-          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">iNFOX</p>
+          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">Scraper</p>
         </a>
         <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" >
-          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">i</p>
+          <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;">s</p>
         </a>
       </div>
       <ul class="nav">
@@ -59,17 +57,12 @@
             <div class="profile-pic">
               <div class="count-indicator">
                 {% for i in use %}         
-                <img class="img-xs rounded-circle " src="{{i.photo.url}}" alt="">
-                
+                <img class="img-xs rounded-circle " src="{{i.photo.url}}" alt="">     
                 <span class="count bg-success"></span>
               </div>
-              <div class="profile-name">
-                
-                               
-                <h5 class="mb-0 font-weight-normal">{{i.fullname}}</h5>
-                
-                <span>user</span>
-                
+              <div class="profile-name">                
+                <h5 class="mb-0 font-weight-normal">{{i.fullname}}</h5>         
+                <span>user</span>            
               </div>
             </div>
             <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -96,14 +89,12 @@
                   <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
                 </div>
               </a>
-
               </a>
             </div>
           </div>
         <li class="nav-item nav-category">
           <span class="nav-link">Navigation</span>
         </li>
-
         <li class="nav-item menu-items">
           <a class="nav-link" href="{% url 'user_dashboard' %}">
             <span class="menu-icon">
@@ -112,23 +103,6 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-        <!-- <li class="nav-item menu-items">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-" aria-expanded="false" aria-controls="ui-basic">
-            <span class="menu-icon">
-              <i class="mdi mdi-laptop"></i>
-            </span>
-            <span class="menu-title">Topics</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="ui-basic">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/buttons.html' %}">Buttons</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/dropdowns.html' %}">Dropdowns</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/ui-features/typography.html' %}">Typography</a>
-              </li>
-            </ul>
-          </div>
-        </li> -->
         <li class="nav-item menu-items">
           <a class="nav-link" href="{% url 'user_search' %}">
             <span class="menu-icon">
@@ -153,27 +127,6 @@
             <span class="menu-title">Weathers</span>
           </a>
         </li>
-        
-        
-        <!-- <li class="nav-item menu-items">
-          <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-            <span class="menu-icon">
-              <i class="mdi mdi-security"></i>
-            </span>
-            <span class="menu-title">Payment</span>
-            <i class="menu-arrow"></i>
-          </a>
-          <div class="collapse" id="auth">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{pages/samples/blank-page.html' %}"> Blank Page </a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/samples/error-404.html' %}"> 404 </a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/samples/error-500.html' %}"> 500 </a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/samples/login.html' %}"> Login </a></li>
-              <li class="nav-item"> <a class="nav-link" href="{pages/samples/register.html' %}"> Register </a></li>
-            </ul>
-          </div>
-        </li> -->
-        
       </ul>
     </nav>
     <!-- partial -->
@@ -182,7 +135,7 @@
       <nav class="navbar p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
           <a class="sidebar-brand brand-logo-mini text-light text-decoration-none" href="index.html">
-            <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">iNFOX</p>
+            <p style="color: white; opacity: 1; font-size: 35px;margin-top: 3vh;padding-left: 100px;">Scraper</p>
           </a>
         </div>
         <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -193,15 +146,9 @@
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
-                <div class="navbar-profile">
-                     
+                <div class="navbar-profile">               
                 <img class="img-xs rounded-circle" src="{{i.photo.url}}" alt="">
-                  
-                 
-   
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">{{i.fullname}}</p>
-                                      
-                 
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name">{{i.fullname}}</p> 
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
@@ -223,8 +170,7 @@
                 <div class="dropdown-divider"></div>
               </div>
             </li>
-          </ul>
-          
+          </ul>     
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
             data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>
@@ -244,7 +190,6 @@
         </div>
         <!-- page-body-wrapper ends -->
       </div>
-      
       <!-- container-scroller -->
       <!-- plugins:js -->
       {% endfor %}
@@ -253,7 +198,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
      <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script> 
       <!-- endinject -->
       <!-- Plugin js for this page -->
@@ -276,9 +220,13 @@
       <!-- End custom js for this page -->
        <script src="{% static 'assets/vendors/js/vendor.bundle.base.js'%}"></script> 
       <!-- endinject -->
-
       <!-- inject:js -->
       <script src="{% static 'assets/js/chart.js'%}"></script>
+          <!-- modal js -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  
       {% if msg_success %}
 <script>
     Swal.fire({
@@ -305,7 +253,5 @@
     })
 </script>
 {% endif %}
-
 </body>
-
 </html>

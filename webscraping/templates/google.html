@@ -2,7 +2,6 @@
 {%load static%}
 {%block content%}
 <style>
-    
       .logo{
         margin-top:100px;
         margin-bottom:20px;
@@ -15,95 +14,85 @@
         box-shadow: 1px 1px 8px 1px #dcdcdc;
         outline:none;
       }
-
-
     
-    .microphone {
+      .microphone {
         border-top-right-radius: 32px !important;
         border-bottom-right-radius: 32px !important;
         background-color: white !important;
-    }
+      }
     
-    .google {
+      .google {
         border-top-left-radius: 32px !important;
         border-bottom-left-radius: 32px !important;
     
         background-color:white !important;
-    }
+      }
     
-    .input-group-prepend {
+      .input-group-prepend {
         margin-right: -2px !important
-    }
+      }
     
-    .input-group-append {
+      .input-group-append {
         margin-left: -2px !important
         background-color:white;
-    }
+      }
     
-    .form-control:focus {
+      .form-control:focus {
         color: #495057;
         background-color: white ;
         border-color: #ced4da;
         outline: 0;
         box-shadow: 0 0 0 0 !important
-    }
+      }
     
-    .form-control {
+      .form-control {
         border-right: 0 !important;
         border-left: 0 !important;
         background-color: white 
         
-    }
-    .mdi{
+      }
+      .search{
         height:25px;
         color:blue;
         padding-top:2px;
         font-size:25px;
 
-    }
-    p{
-       font-family: "Times New Roman", Times, serif;
-   }
-   .icon {
-    font-size: 35px;
-    position: relative;
-    color: rgba(0,0,255,0.5);
-    height:9px;
-    padding-top:9px;
-    background-color:white;
-  }
+      }
+      p{
+        font-family: "Times New Roman", Times, serif;
+      }
+      .icon {
+        font-size: 35px;
+        position: relative;
+        color: rgba(0,0,255,0.5);
+        height:9px;
+        padding-top:9px;
+        background-color:white;
+      }
 
-.icon:before {
-  content: attr(data-char);
-  position: absolute;
-  width: 50%;
-  overflow: hidden;
-  color: rgb(255,0,0);
-}
-
-
+      .icon:before {
+        content: attr(data-char);
+        position: absolute;
+        width: 50%;
+        overflow: hidden;
+        color: rgb(255,0,0);
+      }
 </style>
   <center>
- 
     <div class="logo ">
       <p style="font-size:90px;font-weight:500;"><span style="color:rgb(35, 3, 241);">S</span><span style="color:rgb(234, 15, 15);">e</span><span style="color:rgb(245, 245, 12) ;">a</span><span style="color:rgb(0,0,255);">r</span><span style="color:rgb(10, 203, 10);">c</span><span style="color:rgb(40, 71, 228);">h</span></p>
     </div>
-    <form method='post' action="/scrap/">
+    <form method='post' action="/scrap/"  autocomplete="off">
       {% csrf_token %} 
-      
-      
-      <div class="container col-sm-7 d-flex justify-content-center" >
-        
+      <div class="container col-sm-7 d-flex justify-content-center" >      
         <div class="input-group col-sm-7 input-group-lg" style="height:">
             <div class="input-group-prepend"> <span class="input-group-text google"><p class="icon"  data-char="S">S</p></span> </div> 
             <input type="text" class="form-control query" placeholder="search...." style="height:45px;" name="scrap_data">
-            <div class="input-group-append"> <span class="input-group-text microphone"><i class="mdi mdi-search-web mdi-lg" style="height:25px;"></i></span> </div>
+            <div class="input-group-append"> <span class="input-group-text microphone"><i class="mdi mdi-search-web mdi-lg search" style="height:25px;"></i></span> </div>
         </div>
       </div>
-     
       <button type="submit" class="rainbow-button searchbtn btn btn-outline-primary btn-block col-2" style="margin-top:25px;">Submit</button>
     </form>
-  
 </center>
 {% comment %} <script>
    let query=document.querySelector('.query')
@@ -113,6 +102,4 @@
      window.open(url)
    }
 </script> {% endcomment %}
-
-
 {% endblock %}

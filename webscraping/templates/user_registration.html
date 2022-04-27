@@ -62,22 +62,20 @@
     .ui-widget.ui-widget-content {
       border: 1px solid #636d87;
     }
+
+
   </style>
 </head>
-
 <body onload='document.form1.email.focus()'>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        
+    <div class="container-fluid page-body-wrapper full-page-wrapper">     
       <div class="row w-100 m-0">
         <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
           <div class="card col-lg-8 mx-auto">
-            <div class="card-body px-5 py-5">
-             
+            <div class="card-body px-5 py-5">     
               <h3 class="card-title text-left mb-3">Register</h3>
               <form method="post" action="" name="form1" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
-
                 <div class="form-group">
                   <label>Fullname</label>
                   <input type="text" name="fname" class="form-control p_input text-light" required>
@@ -102,22 +100,19 @@
                   <label>state</label>
                   <input type="text" name="state" class="form-control p_input text-light" required>
                 </div>
-             
                 <div class="form-group">
                   <label>Contact</label>
                   <input type="text" name="contact" class="form-control p_input text-light" required>
                 </div>
                   <div class="form-group">
                     <label>Photo</label>
-                    <input type="file" name="photo" class="form-control p_input text-light" required>
+                    <input type="file" name="photo" id="choose"  class="form-control p_input text-light" required>
                   </div>
                 <div class="text-center ">
                     <button type="submit" onclick="ValidateEmail(document.form1.email)" class="btn btn-primary btn-block enter-btn mt-3"
                       style="width:100px">Register</button>
-                  </div>
-                  
+                  </div>       
               </form>
-
             </div>
           </div>
         </div>
@@ -127,7 +122,6 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-  
   {% if msg_success %}
   <script>
     Swal.fire({
@@ -154,9 +148,7 @@
     })
   </script>
   {% endif %}
-
   <script >
-    
       if (performance.navigation.type == 3) {
           location.reload(true);
         }
@@ -173,5 +165,4 @@
   <script src="static/assets/js/todolist.js"></script>
   <!-- endinject -->
 </body>
-
 </html>
