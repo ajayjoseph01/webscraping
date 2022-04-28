@@ -29,28 +29,28 @@ def Register(request):
          username = fname
          password = random.randint(10000, 99999)
          photo = request.FILES['photo']
-        if candidates.objects.filter(email=email).exists():
-         msg_warning = "Mail id exists"
-         return render(request,'user_registration.html',{'msg_warning':msg_warning})
-        else:
-         register = candidates(fullname=fname, email=email, contact_no=contact,
+         if candidates.objects.filter(email=email).exists():
+          msg_warning = "Mail id exists"
+          return render(request,'user_registration.html',{'msg_warning':msg_warning})
+         else:
+          register = candidates(fullname=fname, email=email, contact_no=contact,
                               username=username, password=password, photo=photo,
                               date_of_birth=dob,gender=gender,country=country,reg_date=reg_date)
-         register.save()
-         messages.success(
-         request, 'username and password  are sent to your registered mail id.........')
-         member = candidates.objects.get(id=register.id)
-         subject = 'Greetings from iNFOX TECHNOLOGIES'
-         message = 'Congratulations,\n' \
+          register.save()
+          messages.success(
+          request, 'username and password  are sent to your registered mail id.........')
+          member = candidates.objects.get(id=register.id)
+          subject = 'Greetings from iNFOX TECHNOLOGIES'
+          message = 'Congratulations,\n' \
             'You have successfully registered with Web Scraping Site.\n' \
             'following is your login credentials\n'\
             'username :'+str(member.username)+'\n' 'password :'+str(member.password)
               
-         recepient = str(email)
-         send_mail(subject, message, EMAIL_HOST_USER,
+          recepient = str(email)
+          send_mail(subject, message, EMAIL_HOST_USER,
                   [recepient], fail_silently=False)
-         msg_success = "Registration completed Check Your Mail"
-         return render(request,'user_registration.html',{'msg_success':msg_success})              
+          msg_success = "Registration completed Check Your Mail"
+          return render(request,'user_registration.html',{'msg_success':msg_success})              
     else:
       return render(request, 'user_registration.html')
 
