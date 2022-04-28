@@ -4,7 +4,7 @@
     <style>
     #container {
         
-        height: 400px;
+        height: 160px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -15,8 +15,8 @@
       .circles {
         border-radius: 50%;
         background-color: #00FFFF;
-        width: 150px;
-        height: 150px;
+        width: 70px;
+        height: 70px;
         position: absolute;
         opacity: 0;
         animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
@@ -106,16 +106,32 @@
                 </div>
             </div>
         </div>
-        <center>
-            <div id="container" class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="item">
-                    <h1>{{ ctn }}</h1>
-                </div>
-                <div class="circles" style="animation-delay: -3s"></div>
-                <div class="circles" style="animation-delay: -2s"></div>
-                <div class="circles" style="animation-delay: -1s"></div>
-                <div class="circles" style="animation-delay: 0s"></div>
+
+        <div class="row" style="padding-top: 20px">
+            <div class=" col-12 col-sm-6 col-md-6 col-lg-6 grid-margin">
+                    <div class="card" >
+                        <div class="card-body">
+                            <div class="row" style="padding-top:5px">
+                                <div class="col-7 col-sm-7 col-md-7 col-lg-7  my-auto">
+                                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                        <h3 class="mb-0" style="font-size:40px;"><span style="color:rgb(35, 3, 241);">U</span><span style="color:rgb(234, 15, 15);">s</span><span style="color:rgb(245, 245, 12) ;">e</span><span style="color:rgb(255,255,255);">r</span><span style="color:rgb(10, 203, 10);">s</span></h3>
+                                    </div>
+                                </div>
+                                <div class="col-5 col-5 col-sm-5 col-md-5 col-lg-5  text-center text-xl-right">
+                                    <div id="container" class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="item">
+                                            <h1 class="text-light pt-2" style="font-size:30px;">{{ ctn }}</h1>
+                                        </div>
+                                        <div class="circles" style="animation-delay: -3s"></div>
+                                        <div class="circles" style="animation-delay: -2s"></div>
+                                        <div class="circles" style="animation-delay: -1s"></div>
+                                        <div class="circles" style="animation-delay: 0s"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
             </div>
-        </center>
+        </div>
     {% endfor %}
 {% endblock %}
