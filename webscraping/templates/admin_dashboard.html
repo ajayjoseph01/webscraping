@@ -1,115 +1,121 @@
-{% extends 'admin_index.html' %} {% load static %} {% block content %}
-<style>
-    .circle{
-        position:relative;
-        height:30vh;
-        width:30vh;
-        background-image: linear-gradient(#33ccff,#ff0066);
-        border-radius:50%;
-        animation:animate 0.5s linear infinite; ;  
-       
-    }
-
-    {% comment %} @keyframes animate{
-        from{
-            transform:rotate(0deg)
-        }
-        to{
-            transform:rotate(360deg)
-        }
-    }   {% endcomment %}
-    .circle::after{
+{% extends 'admin_index.html' %}
+{% load static %}
+{% block content %}
+    <style>
+    #container {
         
-        content:'{{ctn}}';
-        padding-top:40px;
-        font-size:40px;
-        position:absolute;
-        top:20px;
-        left:20px;
-        right:20px;
-        bottom:20px;
-        background: black;
-        border-radius:50%; 
-        
-    }
-    .circle span{
-        position:absolute;
-        height:100%;
-        width:100%;
-        background-image: linear-gradient(#33ccff,#ff0066);
-        border-radius:50%; 
-    }
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+   
+      .circles {
+        border-radius: 50%;
+        background-color: #00FFFF;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        opacity: 0;
+        animation: scaleIn 4s infinite cubic-bezier(.36, .11, .89, .32);
+        }
 
 
-</style>
-<h3 style="padding-left: 7px">My Profile</h3>
-{% for mem in mem %}
-<div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
-        <div class="card ">
-            <div class="card-body 0">
-                <div class="row">
-                    <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
-                        <h4 class="card-title">PROFILE </h4>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2">  
-                                             
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">{{mem.username}}</p>
+      @keyframes scaleIn {
+        from {
+          transform: scale(.5, .5);
+          opacity: .5;
+        }
+        to {
+          transform: scale(2.5, 2.5);
+          opacity: 0;
+        }
+      }
+   
+      .item {
+        z-index: 100;
+        padding: 5px;
+      }
+   
+    
+
+    </style>
+    <h3 style="padding-left: 7px">My Profile</h3>
+    {% for mem in mem %}
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 grid-margin">
+                <div class="card ">
+                    <div class="card-body 0">
+                        <div class="row">
+                            <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
+                                <h4 class="card-title">PROFILE</h4>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-2 col-lg-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Name</label>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <p class="text-muted mt-2">
+                                            {{ mem.username }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">Superadmin</p>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Designation</label>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <p class="text-muted mt-2">
+                                            Superadmin
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">{{mem.email}}</p>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Email</label>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <p class="text-muted mt-2">
+                                            {{ mem.email }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group row">
-                            <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Contact No</label>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <p class="text-muted mt-2">+91 484 402 8658</p>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-6 col-sm-6 col-md-6 col-lg-6 col-form-label">Contact No</label>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                        <p class="text-muted mt-2">
+                                            +91 484 402 8658
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
-</div>
-<div class="row mt-3">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <center>
-            <div class="circle ">
-                
+            <div id="container" class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="item">
+                    <h1>{{ ctn }}</h1>
+                </div>
+                <div class="circles" style="animation-delay: -3s"></div>
+                <div class="circles" style="animation-delay: -2s"></div>
+                <div class="circles" style="animation-delay: -1s"></div>
+                <div class="circles" style="animation-delay: 0s"></div>
             </div>
-            
-           
-        </center> 
-    </div>
-</div>
-{%endfor%}
+        </center>
+    {% endfor %}
 {% endblock %}
