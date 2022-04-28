@@ -78,7 +78,8 @@ def Login(request):
 
 def admin_dashboard(request):
     mem = User.objects.all()
-    return render(request,'admin_dashboard.html',{'mem':mem})
+    ctn = candidates.objects.all().count()
+    return render(request,'admin_dashboard.html',{'mem':mem,'ctn':ctn})
 
 def users(request):
     mem = User.objects.all()

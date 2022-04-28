@@ -1,5 +1,47 @@
 {% extends 'admin_index.html' %} {% load static %} {% block content %}
+<style>
+    .circle{
+        position:relative;
+        height:30vh;
+        width:30vh;
+        background-image: linear-gradient(#33ccff,#ff0066);
+        border-radius:50%;
+        animation:animate 0.5s linear infinite; ;  
+       
+    }
 
+    {% comment %} @keyframes animate{
+        from{
+            transform:rotate(0deg)
+        }
+        to{
+            transform:rotate(360deg)
+        }
+    }  {% endcomment %}
+    .circle::after{
+        
+        content:'{{ctn}}';
+        padding-top:40px;
+        font-size:40px;
+        position:absolute;
+        top:20px;
+        left:20px;
+        right:20px;
+        bottom:20px;
+        background: black;
+        border-radius:50%; 
+        
+    }
+    .circle span{
+        position:absolute;
+        height:100%;
+        width:100%;
+        background-image: linear-gradient(#33ccff,#ff0066);
+        border-radius:50%; 
+    }
+
+
+</style>
 <h3 style="padding-left: 7px">My Profile</h3>
 {% for mem in mem %}
 <div class="row">
@@ -10,7 +52,8 @@
                     <div class="col-8 col-sm-8 col-md-10 col-lg-10 mt-3">
                         <h4 class="card-title">PROFILE </h4>
                     </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-2">                       
+                    <div class="col-4 col-sm-4 col-md-2 col-lg-2">  
+                                             
                     </div>
                 </div>
                 <div class="row">
@@ -56,6 +99,17 @@
             </div>
         </div>
     </div> 
+</div>
+<div class="row mt-3">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <center>
+            <div class="circle ">
+                
+            </div>
+            
+           
+        </center> 
+    </div>
 </div>
 {%endfor%}
 {% endblock %}
