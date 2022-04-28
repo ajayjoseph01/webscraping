@@ -14,6 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 import random
 from urllib.request import urlopen
+import pandas as pd
 
 def Register(request):
     if request.method == 'POST':
@@ -264,6 +265,8 @@ def scrap(request):
         username1 = "dummy" 
       use = candidates.objects.filter(id=username1)
       scrapdata=request.POST['scrap_data']
+    
+   
       text = scrapdata
       url = 'https://google.com/search?q=' + text
       A = ("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
@@ -276,6 +279,16 @@ def scrap(request):
       soup = BeautifulSoup(r.text, 'lxml')
       googles=soup.find_all('h3')
       datas=[]
+      
+
+     
+      
       for th in googles:
-         datas.append(th.text)
-      return render(request,'search_data.html',{'datas':datas,'use':use,'text':text})
+          datas.append(th.text)
+     
+
+      df = pd.DataFrame({"datas":datas})
+      df.to_csv('text.csv')
+      df.to_excel('text.xlsx', index=False,header = False)#Writing to Excel file
+    
+      return render(request,'search_data.html',{'datas':datas,'use':use,'text':text,})
