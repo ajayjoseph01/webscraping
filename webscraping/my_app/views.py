@@ -56,9 +56,9 @@ def Register(request):
 
 def Login(request): 
     if request.method == 'POST':
-        if candidates.objects.filter(username=request.POST['username'], password=request.POST['password']).exists():
+        if candidates.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
             mem = candidates.objects.get(
-                password=request.POST['password'], username=request.POST['username'])
+                password=request.POST['password'], email=request.POST['email'])
             request.session['username'] = mem.username
             request.session['username1'] = mem.id      
             username = request.session['username']
@@ -66,9 +66,9 @@ def Login(request):
             use = candidates.objects.filter(id=mem.id)
             return render(request, 'user_dashboard.html',{'use':use})      
         elif request.method == 'POST':
-            username = request.POST.get('username', None)
+            username = request.POST['email']
             password = request.POST.get('password', None)
-            user = authenticate(username=username, password=password)
+            user = authenticate(username = username, password = password)
             if user:
                 login(request, user)
                 return redirect('admin_dashboard')
