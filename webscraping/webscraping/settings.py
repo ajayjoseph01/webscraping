@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+
+
 from pathlib import Path
-import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'webscraping.urls'
-
+import os
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,7 +79,7 @@ WSGI_APPLICATION = 'webscraping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'webscraping',
+        'NAME': 'webscrapings',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

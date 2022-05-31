@@ -280,7 +280,7 @@ def scrap(request):
       for th in googles:
           datas.append(th.text)
          
-      df = pd.DataFrame({"datas":datas})
+      df = pd .DataFrame({"datas":datas})
       df.to_csv('text.csv')#Writing to csv file
       df.to_excel('text.xlsx', index=False,header = False)#Writing to Excel file
     
